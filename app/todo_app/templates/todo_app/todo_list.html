@@ -1,0 +1,33 @@
+{% extends "./base.html" %}
+
+{% block content %}
+    <h3>Add a task</h3>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <label name="taskLabel" for="taskField">Task:</label>
+        <input id="taskField" name="taskField"/>
+        <br>
+        <label name="dueDateLabel" for="dueDateField">Due Date:</label>
+        <input type="date" id="dueDateField" name="dueDateField"/>
+        <br>
+        <input type="submit"/>
+    </form>
+    <br>
+    <h2>This is a list of all the stuff you gotta do.</h2>
+    <table>
+        <tr>
+            <th>Task Name</th>
+            <th>Date Created</th>
+            <th>Due Date</th>
+            <th>Delete?</th>
+        </tr>
+        {% for task in tasks %}
+            <tr>
+                <td>{{task.task}}</td>
+                <td>{{task.date_created}}</td>
+                <td>{{task.due_date}}</td>
+                <td><a href = "{% url 'task_delete' task.id %}">Delete Task</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

@@ -6,7 +6,6 @@ services:
     command: gunicorn nc_tutorials.wsgi:application --bind 0.0.0.0:8000
     volumes:
       - ./app/:/usr/src/app/
-      - static_volume:/usr/src/app/static
     expose:
       - 8000
     environment:
@@ -18,5 +17,3 @@ services:
       - DATABASE=postgres
       - VIRTUAL_HOST=ec2-52-7-239-141.compute-1.amazonaws.com
       - VIRTUAL_PORT=8000
-volumes:
-  static_volume:
